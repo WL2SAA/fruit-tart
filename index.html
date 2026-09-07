@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Palak Mam</title>
+
+  <!-- Google Fonts: Editorial Serif + Clean Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: {
+              DEFAULT: '#FAF8F5',
+              subtle: '#F4F0EB',
+              card: '#FFFFFF',
+              border: '#E8E2D9',
+              dark: '#161514',
+            },
+            charcoal: {
+              DEFAULT: '#1E1D1B',
+              muted: '#636059',
+              light: '#8C8880',
+            },
+            bronze: {
+              DEFAULT: '#9E8056',
+              light: '#C4A882',
+              soft: '#F2EBE1',
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            script: ['"Pinyon Script"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      background-color: #FAF8F5;
+      color: #1E1D1B;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle hair-line dividers */
+    .fine-border {
+      border-color: #E8E2D9;
+    }
+
+    /* Minimalist smooth hover transitions */
+    .link-hover {
+      position: relative;
+      display: inline-block;
+    }
+    .link-hover::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #9E8056;
+      transition: width 0.3s ease;
+    }
+    .link-hover:hover::after {
+      width: 100%;
+    }
+
+    /* Subtle image framing */
+    .portrait-frame {
+      box-shadow: 0 20px 40px -15px rgba(30, 29, 27, 0.08);
+    }
+  </style>
+</head>
+<body class="selection:bg-bronze-soft selection:text-bronze">
+
+  <!-- Fallback Confetti Canvas -->
+  <canvas id="customConfettiCanvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+  <!-- ================= MINIMALIST HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-[#FAF8F5]/90 backdrop-blur-md border-b fine-border">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#hero" class="group flex items-baseline gap-2">
+        <span class="font-serif text-xl tracking-tight font-medium text-charcoal">Palak Mam</span>
+        <span class="text-[11px] uppercase tracking-widest text-bronze font-sans font-medium">• Birthday Edition</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-wider font-medium text-charcoal-muted">
+        <a href="#tribute" class="link-hover hover:text-charcoal transition-colors">Philosophy</a>
+        <a href="#pillars" class="link-hover hover:text-charcoal transition-colors">The Four Pillars</a>
+        <a href="#journey" class="link-hover hover:text-charcoal transition-colors">Journey</a>
+        <a href="#wishes" class="link-hover hover:text-charcoal transition-colors">Wishes</a>
+        <a href="#letter" class="link-hover hover:text-charcoal transition-colors">Letter</a>
+      </nav>
+
+      <button onclick="triggerMinimalToast()" class="px-4 py-2 rounded-full border fine-border bg-white text-charcoal hover:border-bronze hover:text-bronze text-xs uppercase tracking-wider font-medium transition-all shadow-sm">
+        Celebrate
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO SECTION ================= -->
+    <section id="hero" class="pt-24 pb-20 px-6 max-w-4xl mx-auto text-center">
+      
+      <!-- Subtle Metadata Pill -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-subtle border fine-border text-xs uppercase tracking-widest text-charcoal-muted mb-8">
+        <span>Honoring A True Mentor</span>
+        <span class="text-bronze font-serif">•</span>
+        <span>A Celebration of Grace & Guidance</span>
+      </div>
+
+      <!-- Main Editorial Headline -->
+      <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal tracking-tight text-charcoal leading-[1.08] mb-8">
+        Happy Birthday, <br class="hidden sm:inline" />
+        <span class="italic font-normal text-bronze">Palak Mam.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="font-sans text-base sm:text-xl text-charcoal-muted max-w-2xl mx-auto leading-relaxed font-light mb-12">
+        In recognition of your tireless patience, the calm confidence you instill, and the quiet devotion with which you guide curious minds toward their highest potential.
+      </p>
+
+      <!-- Minimalist Call-To-Actions -->
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs uppercase tracking-wider font-medium">
+        <a href="#tribute" class="px-6 py-3.5 bg-charcoal text-white rounded-full hover:bg-bronze transition-colors shadow-sm">
+          Read The Tribute
+        </a>
+        <button onclick="triggerMinimalToast()" class="px-6 py-3.5 bg-white border fine-border text-charcoal rounded-full hover:border-bronze transition-colors shadow-sm">
+          Raise A Birthday Toast ✦
+        </button>
+      </div>
+
+      <!-- Subtle Metric Highlights -->
+      <div class="grid grid-cols-3 gap-6 pt-16 mt-16 border-t fine-border max-w-xl mx-auto text-center">
+        <div>
+          <div class="font-serif text-2xl sm:text-3xl text-charcoal font-normal">Infinite</div>
+          <div class="text-[11px] uppercase tracking-wider text-charcoal-muted mt-1 font-sans">Patience</div>
+        </div>
+        <div class="border-x fine-border">
+          <div class="font-serif text-2xl sm:text-3xl text-charcoal font-normal">Unconditional</div>
+          <div class="text-[11px] uppercase tracking-wider text-charcoal-muted mt-1 font-sans">Belief</div>
+        </div>
+        <div>
+          <div class="font-serif text-2xl sm:text-3xl text-charcoal font-normal">Countless</div>
+          <div class="text-[11px] uppercase tracking-wider text-charcoal-muted mt-1 font-sans">Moments of Clarity</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= THE PORTRAIT & PHILOSOPHY ================= -->
+    <section id="tribute" class="py-20 px-6 border-t fine-border bg-surface-subtle/50">
+      <div class="max-w-5xl mx-auto">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          <!-- Portrait Frame (Using local pic.jpg) -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-sm">
+              <div class="portrait-frame bg-white p-3 rounded-2xl border fine-border">
+                <div class="aspect-[3/4] overflow-hidden rounded-xl bg-[#EDE7DF] relative">
+                  <img
+                    src="pic.jpg"
+                    alt="Palak Mam"
+                    class="w-full h-full object-cover object-center grayscale contrast-[1.05] hover:grayscale-0 transition-all duration-700"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop';"
+                  />
+                </div>
+                <div class="pt-4 pb-2 px-1 text-center">
+                  <div class="font-serif text-lg text-charcoal font-medium">Palak Mam</div>
+                  <div class="text-[11px] uppercase tracking-widest text-bronze mt-0.5 font-sans">Educator & Mentor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Narrative -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="text-xs uppercase tracking-widest text-bronze font-medium">
+              The Art of Teaching
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-4xl text-charcoal font-normal leading-snug">
+              Demystifying the complex, nurturing quiet resilience, and teaching with genuine devotion.
+            </h2>
+
+            <p class="font-sans text-charcoal-muted text-sm sm:text-base leading-relaxed font-light">
+              True mentorship is rarely loud. It lives in the unhurried moments: the willingness to revisit a theorem for the fourth time without frustration, the calm reassurance when an exam approaches, and the quiet discipline that transforms hesitation into understanding.
+            </p>
+
+            <p class="font-sans text-charcoal-muted text-sm sm:text-base leading-relaxed font-light">
+              In your classroom, learning is never an ordeal to be endured. It is an intentional, welcoming space where every student is encouraged to ask, to explore, and to discover that difficulty is merely an invitation to grow.
+            </p>
+
+            <div class="pt-2">
+              <blockquote class="pl-5 border-l-2 border-bronze font-serif italic text-lg sm:text-xl text-charcoal font-normal">
+                “To teach is to touch the future with kindness and certainty.”
+              </blockquote>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= THE FOUR PILLARS OF HER GUIDANCE ================= -->
+    <section id="pillars" class="py-24 px-6 max-w-5xl mx-auto">
+      
+      <div class="text-center max-w-xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest text-bronze font-medium">Pillars of Impact</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal font-normal mt-2">
+          The Foundations of Her Mentorship
+        </h2>
+        <p class="text-xs sm:text-sm text-charcoal-muted mt-3 font-light leading-relaxed">
+          The distinctive qualities that define every tuition session and leave an indelible impression.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Pillar 1 -->
+        <article class="p-8 rounded-2xl bg-white border fine-border hover:border-bronze transition-colors shadow-sm">
+          <span class="font-serif text-2xl text-bronze font-normal italic">01.</span>
+          <h3 class="font-serif text-xl sm:text-2xl text-charcoal font-medium mt-3 mb-2">Pedagogical Clarity</h3>
+          <p class="font-sans text-sm text-charcoal-muted leading-relaxed font-light">
+            You possess the rare faculty of stripping away academic opacity. By breaking daunting formulas into intuitive mental models, you make knowledge accessible and captivating.
+          </p>
+        </article>
+
+        <!-- Pillar 2 -->
+        <article class="p-8 rounded-2xl bg-white border fine-border hover:border-bronze transition-colors shadow-sm">
+          <span class="font-serif text-2xl text-bronze font-normal italic">02.</span>
+          <h3 class="font-serif text-xl sm:text-2xl text-charcoal font-medium mt-3 mb-2">Unfaltering Patience</h3>
+          <p class="font-sans text-sm text-charcoal-muted leading-relaxed font-light">
+            No question is ever dismissed as trivial. Your classroom remains an emotionally safe sanctuary where a student can admit what they do not know without hesitation or embarrassment.
+          </p>
+        </article>
+
+        <!-- Pillar 3 -->
+        <article class="p-8 rounded-2xl bg-white border fine-border hover:border-bronze transition-colors shadow-sm">
+          <span class="font-serif text-2xl text-bronze font-normal italic">03.</span>
+          <h3 class="font-serif text-xl sm:text-2xl text-charcoal font-medium mt-3 mb-2">De-escalating Anxiety</h3>
+          <p class="font-sans text-sm text-charcoal-muted leading-relaxed font-light">
+            When tests and performance pressures create self-doubt, your calm equilibrium brings grounding. You replace exam panic with structured preparation and quiet composure.
+          </p>
+        </article>
+
+        <!-- Pillar 4 -->
+        <article class="p-8 rounded-2xl bg-white border fine-border hover:border-bronze transition-colors shadow-sm">
+          <span class="font-serif text-2xl text-bronze font-normal italic">04.</span>
+          <h3 class="font-serif text-xl sm:text-2xl text-charcoal font-medium mt-3 mb-2">Instilling Self-Belief</h3>
+          <p class="font-sans text-sm text-charcoal-muted leading-relaxed font-light">
+            More than conveying syllabus answers, you teach students how to think independently. You see the dormant capability within each learner long before they recognize it themselves.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- ================= A STUDENT'S JOURNEY (TIMELINE) ================= -->
+    <section id="journey" class="py-20 px-6 border-y fine-border bg-surface-subtle/30">
+      <div class="max-w-4xl mx-auto">
+        
+        <div class="text-center max-w-xl mx-auto mb-16">
+          <span class="text-xs uppercase tracking-widest text-bronze font-medium">Evolution</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-charcoal font-normal mt-2">
+            The Trajectory of Growth
+          </h2>
+          <p class="text-xs sm:text-sm text-charcoal-muted mt-3 font-light leading-relaxed">
+            How guidance from an exceptional educator transforms academic life over time.
+          </p>
+        </div>
+
+        <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 md:before:left-1/2 before:w-[1px] before:bg-surface-border">
+          
+          <!-- Step 1 -->
+          <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="md:w-1/2 md:text-right md:pr-8 pl-12 md:pl-0">
+              <span class="text-[11px] uppercase tracking-wider text-bronze font-medium">Stage 01</span>
+              <h3 class="font-serif text-lg sm:text-xl font-medium text-charcoal">The Hesitant Beginning</h3>
+              <p class="font-sans text-xs sm:text-sm text-charcoal-muted mt-1 font-light leading-relaxed">
+                Entering tuition laden with confusion, fear of asking questions, and feeling overshadowed by complex coursework.
+              </p>
+            </div>
+            <div class="absolute left-2.5 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-bronze border-4 border-surface"></div>
+            <div class="md:w-1/2 md:pl-8 pl-12"></div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="md:w-1/2 md:text-right md:pr-8 pl-12 md:pl-0 hidden md:block"></div>
+            <div class="absolute left-2.5 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-bronze border-4 border-surface"></div>
+            <div class="md:w-1/2 md:pl-8 pl-12">
+              <span class="text-[11px] uppercase tracking-wider text-bronze font-medium">Stage 02</span>
+              <h3 class="font-serif text-lg sm:text-xl font-medium text-charcoal">Unraveling the Doubts</h3>
+              <p class="font-sans text-xs sm:text-sm text-charcoal-muted mt-1 font-light leading-relaxed">
+                Palak Mam patiently dissects fundamentals step-by-step. The initial friction dissolves into genuine curiosity.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="md:w-1/2 md:text-right md:pr-8 pl-12 md:pl-0">
+              <span class="text-[11px] uppercase tracking-wider text-bronze font-medium">Stage 03</span>
+              <h3 class="font-serif text-lg sm:text-xl font-medium text-charcoal">The Dawn of Autonomy</h3>
+              <p class="font-sans text-xs sm:text-sm text-charcoal-muted mt-1 font-light leading-relaxed">
+                Problems that once felt impossible are now solved with methodical confidence and intellectual poise.
+              </p>
+            </div>
+            <div class="absolute left-2.5 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-bronze border-4 border-surface"></div>
+            <div class="md:w-1/2 md:pl-8 pl-12"></div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+            <div class="md:w-1/2 md:text-right md:pr-8 pl-12 md:pl-0 hidden md:block"></div>
+            <div class="absolute left-2.5 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-bronze border-4 border-surface"></div>
+            <div class="md:w-1/2 md:pl-8 pl-12">
+              <span class="text-[11px] uppercase tracking-wider text-bronze font-medium">Stage 04</span>
+              <h3 class="font-serif text-lg sm:text-xl font-medium text-charcoal">Lasting Empowerment</h3>
+              <p class="font-sans text-xs sm:text-sm text-charcoal-muted mt-1 font-light leading-relaxed">
+                Carrying forward not merely good grades, but an enduring discipline and self-assurance that shapes future ambitions.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= BIRTHDAY ASPIRATIONS ================= -->
+    <section id="wishes" class="py-24 px-6 max-w-5xl mx-auto">
+      
+      <div class="text-center max-w-xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest text-bronze font-medium">Warmest Wishes</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal font-normal mt-2">
+          For the Year Ahead
+        </h2>
+        <p class="text-xs sm:text-sm text-charcoal-muted mt-3 font-light leading-relaxed">
+          Prayers and hopes for the one who invests so selflessly into the dreams of others.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-2xl bg-white border fine-border text-left">
+          <div class="text-bronze font-serif text-lg italic mb-2">01. Serenity</div>
+          <h3 class="font-serif text-lg font-medium text-charcoal mb-1">Peace & Ease</h3>
+          <p class="text-xs text-charcoal-muted leading-relaxed font-light">
+            May your daily routine bring you moments of stillness, fulfillment, and restorative rest.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border fine-border text-left">
+          <div class="text-bronze font-serif text-lg italic mb-2">02. Vitality</div>
+          <h3 class="font-serif text-lg font-medium text-charcoal mb-1">Robust Health</h3>
+          <p class="text-xs text-charcoal-muted leading-relaxed font-light">
+            May you be blessed with abundant vitality, good health, and joyful energy throughout every season.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border fine-border text-left">
+          <div class="text-bronze font-serif text-lg italic mb-2">03. Success</div>
+          <h3 class="font-serif text-lg font-medium text-charcoal mb-1">Honored Ambitions</h3>
+          <p class="text-xs text-charcoal-muted leading-relaxed font-light">
+            May every personal goal and scholarly aspiration you pursue flourish with effortless grace.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border fine-border text-left">
+          <div class="text-bronze font-serif text-lg italic mb-2">04. Delight</div>
+          <h3 class="font-serif text-lg font-medium text-charcoal mb-1">Countless Smiles</h3>
+          <p class="text-xs text-charcoal-muted leading-relaxed font-light">
+            May you receive in tenfold the warmth, optimism, and inspiration you generously bestow upon us.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= THE DIGITAL BIRTHDAY LETTER ================= -->
+    <section id="letter" class="py-20 px-6 border-t fine-border bg-surface-subtle/40">
+      <div class="max-w-3xl mx-auto">
+        
+        <div class="text-center mb-12">
+          <span class="text-xs uppercase tracking-widest text-bronze font-medium">Personal Dispatch</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-charcoal font-normal mt-2">
+            A Letter of Gratitude
+          </h2>
+        </div>
+
+        <!-- High-end stationery card -->
+        <div class="bg-white p-8 sm:p-14 rounded-3xl border fine-border shadow-sm text-charcoal">
+          
+          <div class="flex items-baseline justify-between border-b fine-border pb-6 mb-8">
+            <div>
+              <span class="text-[10px] uppercase tracking-widest text-charcoal-muted font-mono">Special Dispatch</span>
+              <h3 class="font-serif text-2xl sm:text-3xl font-medium mt-1">Dear Palak Mam,</h3>
+            </div>
+            <span class="text-xs uppercase tracking-widest text-bronze font-medium">September 2026</span>
+          </div>
+
+          <div class="space-y-6 font-sans text-sm sm:text-base leading-relaxed text-charcoal-muted font-light">
+            <p class="first-letter:font-serif first-letter:text-5xl first-letter:text-charcoal first-letter:float-left first-letter:mr-3 first-letter:leading-none">
+              On this special day, I wanted to set aside our ordinary routine of syllabi and chapters to write a note of heartfelt appreciation. It is rare to find a teacher who combines thorough command of subject matter with such generous warmth, but that is precisely who you are.
+            </p>
+
+            <p>
+              Tuition classes can easily become another tiring obligation in a student’s week. With you, however, they have always been a sanctuary of clarity. You never count how many times a difficult doubt must be repeated; you simply meet every question with unhurried patience and genuine encouragement.
+            </p>
+
+            <p>
+              Your lessons have done much more than help navigate exams. They have taught me the value of structured thinking, perseverance in the face of initial confusion, and the confidence that comes from truly understanding the fundamentals.
+            </p>
+
+            <p>
+              May this birthday mark the beginning of an extraordinary year filled with happiness, deep fulfillment, radiant health, and quiet peace. Thank you for everything you do.
+            </p>
+          </div>
+
+          <div class="mt-12 pt-8 border-t fine-border flex flex-col items-end text-right">
+            <div class="text-xs uppercase tracking-wider text-charcoal-muted font-medium">
+              With endless gratitude and warmest birthday wishes,
+            </div>
+            <div class="font-script text-4xl sm:text-5xl text-charcoal mt-2 tracking-wide">
+              Harshit (Ricky)
+            </div>
+            <div class="text-[11px] uppercase tracking-widest text-bronze mt-1 font-sans font-medium">
+              Your Grateful Student
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-8 text-center">
+          <button onclick="triggerMinimalToast()" class="px-6 py-3 bg-white border fine-border text-charcoal rounded-full hover:border-bronze hover:text-bronze text-xs uppercase tracking-wider font-medium transition-all shadow-sm">
+            Toast to Palak Mam ✦
+          </button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= MINIMALIST FOOTER ================= -->
+  <footer class="py-12 px-6 border-t fine-border text-center text-charcoal-muted text-xs font-light">
+    <div class="max-w-4xl mx-auto space-y-2">
+      <div class="font-serif text-base text-charcoal font-medium">
+        Happy Birthday, Palak Mam
+      </div>
+      <p>
+        Honoring dedication, patience, and the profound gift of education.
+      </p>
+      <div class="text-[11px] text-charcoal-light pt-2">
+        Crafted with deep appreciation by Harshit (Ricky) • 2026
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= REFINED CONFETTI SCRIPT ================= -->
+  <script>
+    // Sophisticated, champagne & gold minimal confetti
+    function triggerMinimalToast() {
+      if (typeof confetti === 'function') {
+        const colors = ['#C4A882', '#9E8056', '#D4AF37', '#E8E2D9', '#FAF8F5'];
+
+        // Gentle left fountain
+        confetti({
+          particleCount: 35,
+          angle: 60,
+          spread: 45,
+          origin: { x: 0 },
+          colors: colors,
+          decay: 0.92,
+          scalar: 0.9
+        });
+
+        // Gentle right fountain
+        confetti({
+          particleCount: 35,
+          angle: 120,
+          spread: 45,
+          origin: { x: 1 },
+          colors: colors,
+          decay: 0.92,
+          scalar: 0.9
+        });
+
+        // Delicate center sprinkle
+        setTimeout(() => {
+          confetti({
+            particleCount: 45,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: colors,
+            scalar: 1
+          });
+        }, 200);
+      } else {
+        runFallbackParticles();
+      }
+    }
+
+    // Built-in lightweight fallback particle canvas
+    function runFallbackParticles() {
+      const canvas = document.getElementById('customConfettiCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#C4A882', '#9E8056', '#FAF8F5'];
+
+      for (let i = 0; i < 50; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height * 0.3,
+          size: Math.random() * 5 + 3,
+          speedY: Math.random() * 2 + 1.5,
+          speedX: (Math.random() - 0.5) * 1.5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+        });
+      }
+
+      let start = performance.now();
+      function update(time) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.y += p.speedY;
+          p.x += p.speedX;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size * 0.7);
+        });
+
+        if (time - start < 2800) {
+          requestAnimationFrame(update);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      requestAnimationFrame(update);
+    }
+
+    // Gentle celebration on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        triggerMinimalToast();
+      }, 500);
+    });
+
+    window.addEventListener('resize', () => {
+      const canvas = document.getElementById('customConfettiCanvas');
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    });
+  </script>
+</body>
+</html>
